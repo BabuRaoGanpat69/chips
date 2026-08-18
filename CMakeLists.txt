@@ -42,19 +42,19 @@ endif()
 
 
 # glm is header only so you might think why do we need target_link_libraries so the answer is it was like this in the official build build , i guess it does what target_include_ditrectories would do
-target_link_libraries( main PRIVATE glm::glm-header-only)
+target_link_libraries( main PUBLIC glm::glm-header-only)
 
 # to locate/link your own header inside include
-target_include_directories( main PRIVATE src)
-target_include_directories( main PRIVATE external)
+target_include_directories( main PUBLIC src)
+target_include_directories( main PUBLIC external)
 # Link glfw to main
 target_link_libraries(main
-PRIVATE
+PUBLIC
 glfw
 )
 # glfw_SOURCE_DIR it is tyde
 # f i guess used by the glfws
 # default cmake to point where headers live
-target_include_directories( main PRIVATE "${glfw_SOURCE_DIR}/include")
+target_include_directories( main PUBLIC "${glfw_SOURCE_DIR}/include")
 # so that compiler can expand include"glad/glad.h" to include "external/glad/include/glad/glad.h"
-target_include_directories(main PRIVATE external/glad/include)
+target_include_directories(main PUBLIC external/glad/include)
